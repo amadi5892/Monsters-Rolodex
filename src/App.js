@@ -26,26 +26,26 @@ componentDidMount() {
     }
     ));
 }
+  onSearchChange = (event) => {
+    const searchField = event.target.value.toLocaleLowerCase();
+    this.setState(() => {
+      return { searchField};
+    })
 
+  }
   render() {
     console.log('render');
 
+    const { monsters, searchField} = this.state;
+    const { onSearchChange } = this; 
     // [ { name: 'Leanne' }, {name: 'Yihua'} ]
-    const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
     });
 
     return (
       <div className="App">
-        <input classname='search-box' type='search' placeholder='search monster' onChange={(event) => {
-          const searchField = event.target.value.toLocaleLowerCase();
-          
-
-          this.setState(() => {
-            return { searchField};
-          })
-
-        }} />
+        <input classname='search-box' type='search' placeholder='search monster' onChange={onSearchChange} />
         {
           filteredMonsters.map((monster) => {
             return <h1 key={monster.id}>{monster.name}</h1>;
