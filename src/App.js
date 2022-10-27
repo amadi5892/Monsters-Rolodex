@@ -9,12 +9,13 @@ constructor() {
 
   this.state = {
     monsters: [],
+    searchField: '',
   };
-  console.log('1');
+  console.log('constructor');
 }
 
 componentDidMount() {
-  console.log('3');
+  console.log('componentDidMount');
   fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
     .then((users) => this.setState(() => {
@@ -27,11 +28,26 @@ componentDidMount() {
 }
 
   render() {
-    console.log('2');
+    console.log('render');
+
+    // [ { name: 'Leanne' }, {name: 'Yihua'} ]
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    });
+
     return (
       <div className="App">
+        <input classname='search-box' type='search' placeholder='search monster' onChange={(event) => {
+          const searchField = event.target.value.toLocaleLowerCase();
+          
+
+          this.setState(() => {
+            return { searchField};
+          })
+
+        }} />
         {
-          this.state.monsters.map((monster) => {
+          filteredMonsters.map((monster) => {
             return <h1 key={monster.id}>{monster.name}</h1>;
           })
         }
