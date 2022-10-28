@@ -45,7 +45,7 @@ componentDidMount() {
             return <h1 key={monster.id}>{monster.name}</h1>;
           })
         }*/}
-        <SearchBox onChangeHandler={onSearchChange} placeholder='search monster' classname='search-box' />
+        <SearchBox onChangeHandler={onSearchChange} placeholder='search monster' className='search-box' />
         <CardList monsters={filteredMonsters} />
       </div>
     );
