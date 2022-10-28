@@ -40,11 +40,9 @@ componentDidMount() {
 
     return (
       <div className="App">
-        {/*{
-          filteredMonsters.map((monster) => {
-            return <h1 key={monster.id}>{monster.name}</h1>;
-          })
-        }*/}
+        <h1 className="app-title">Monsters Rolodex</h1>
+
+
         <SearchBox onChangeHandler={onSearchChange} placeholder='search monster' className='search-box' />
         <CardList monsters={filteredMonsters} />
       </div>
