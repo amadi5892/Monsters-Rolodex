@@ -11,18 +11,13 @@ constructor() {
     monsters: [],
     searchField: '',
   };
-  console.log('constructor');
 }
 
 componentDidMount() {
-  console.log('componentDidMount');
   fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
     .then((users) => this.setState(() => {
       return {monsters: users}
-    },
-    () => {
-      console.log(this.state);
     }
     ));
 }
@@ -34,7 +29,6 @@ componentDidMount() {
 
   }
   render() {
-    console.log('render');
 
     const { monsters, searchField} = this.state;
     const { onSearchChange } = this; 
@@ -51,7 +45,7 @@ componentDidMount() {
             return <h1 key={monster.id}>{monster.name}</h1>;
           })
         }*/}
-        <CardList />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
